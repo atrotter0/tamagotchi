@@ -9,7 +9,7 @@ namespace Tamagotchi.Models
         private int _food;
         private int _attention;
         private int _rest;
-        private int _decayValue = 10;
+        private int _decayValue = 0;
         private int _replenishValue = 10;
         private int _id;
         private bool _isDead = false;
@@ -42,23 +42,27 @@ namespace Tamagotchi.Models
             return _id;
         }
 
-        public void SetDecayValue(int decayValue)
+        public void SetDecayValue()
         {
-            _decayValue = decayValue;
+            Random random = new Random();
+            _decayValue = random.Next(5, 15);
         }
 
         public int GetDecayValue()
         {
+            this.SetDecayValue();
             return _decayValue;
         }
 
-        public void SetReplenishValue(int replenishValue)
+        public void SetReplenishValue()
         {
-            _replenishValue = replenishValue;
+            Random random = new Random();
+            _replenishValue = random.Next(5, 15);
         }
 
         public int GetReplenishValue()
         {
+            this.SetReplenishValue();
             return _replenishValue;
         }
 

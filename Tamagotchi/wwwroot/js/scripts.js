@@ -111,7 +111,9 @@ function updatePetData(data) {
 $(document).ready(function() {
   timer();
 
-  $("#add-pet").click(function() {
+  $("#add-pet").click(function(e) {
+    e.preventDefault();
+
     var name = $("#name").val();
     createPet(name);
   });
@@ -119,15 +121,18 @@ $(document).ready(function() {
   $(document).on("click", ".feed-pet", function() {
     var id = $(this).parents().parents(".grid-item").attr("id");
     feedPet(id);
+    $(this).prop("disabled", true);
   });
 
   $(document).on("click", ".play-pet", function() {
     var id = $(this).parents().parents(".grid-item").attr("id");
     playPet(id);
+    $(this).prop("disabled", true);
   });
 
   $(document).on("click", ".rest-pet", function() {
     var id = $(this).parents().parents(".grid-item").attr("id");
     restPet(id);
+    $(this).prop("disabled", true);
   });
 });
