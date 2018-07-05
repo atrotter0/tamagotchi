@@ -5,6 +5,7 @@ namespace Tamagotchi.Models
 {
     public class TamagotchiPet
     {
+        private string _name;
         private int _food;
         private int _attention;
         private int _rest;
@@ -18,6 +19,16 @@ namespace Tamagotchi.Models
             _food = 100;
             _attention = 100;
             _rest = 100;
+        }
+
+        public void SetName(string name)
+        {
+            _name = name + "chi";
+        }
+
+        public string GetName()
+        {
+            return _name;
         }
 
         public void SetDecayValue(int decayValue)
@@ -53,6 +64,36 @@ namespace Tamagotchi.Models
         public int GetFood()
         {
             return _food;
+        }
+
+        public void AttentionDecay()
+        {
+            _attention -= this.GetDecayValue();
+        }
+
+        public void AttentionReplenish()
+        {
+            _attention += this.GetReplenishValue();
+        }
+
+        public int GetAttention()
+        {
+            return _attention;
+        }
+
+        public void RestDecay()
+        {
+            _rest -= this.GetDecayValue();
+        }
+
+        public void RestReplenish()
+        {
+            _rest += this.GetReplenishValue();
+        }
+
+        public int GetRest()
+        {
+            return _rest;
         }
     }
 }

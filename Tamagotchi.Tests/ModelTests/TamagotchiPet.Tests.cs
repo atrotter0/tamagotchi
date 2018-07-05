@@ -39,5 +39,45 @@ namespace Tamagotchi.Tests
             pet.FoodReplenish();
             Assert.AreEqual(110, pet.GetFood());
         }
+
+        [TestMethod]
+        public void SetGetName_ReturnsName_String()
+        {
+            TamagotchiPet pet = new TamagotchiPet();
+            pet.SetName("Tamagot");
+            Assert.AreEqual("Tamagotchi", pet.GetName());
+        }
+
+        [TestMethod]
+        public void AttentionDecay_SubtractsAttention_Int()
+        {
+            TamagotchiPet pet = new TamagotchiPet();
+            pet.AttentionDecay();
+            Assert.AreEqual(90, pet.GetAttention());
+        }
+
+        [TestMethod]
+        public void AttentionReplenish_AddsAttention_Int()
+        {
+            TamagotchiPet pet = new TamagotchiPet();
+            pet.AttentionReplenish();
+            Assert.AreEqual(110, pet.GetAttention());
+        }
+
+        [TestMethod]
+        public void RestDecay_SubtractsRest_Int()
+        {
+            TamagotchiPet pet = new TamagotchiPet();
+            pet.RestDecay();
+            Assert.AreEqual(90, pet.GetRest());
+        }
+
+        [TestMethod]
+        public void RestReplenish_AddsRest_Int()
+        {
+            TamagotchiPet pet = new TamagotchiPet();
+            pet.RestReplenish();
+            Assert.AreEqual(110, pet.GetRest());
+        }
     }
 }
