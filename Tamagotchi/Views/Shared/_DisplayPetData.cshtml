@@ -16,9 +16,9 @@
   </div>
   <div class="grid-item">
     <div class="pet-stats">
-      <p>Hunger: @pet.GetFood()</p>
-      <p>Happiness: @pet.GetAttention()</p>
-      <p>Energy: @pet.GetRest()</p>
+      <p>Hunger: <span id="pet-hunger-@pet.GetId()">@pet.GetFood()</span></p>
+      <p>Happiness: <span id="pet-happiness-@pet.GetId()">@pet.GetAttention()</span></p>
+      <p>Energy: <span id="pet-energy-@pet.GetId()">@pet.GetRest()</span></p>
     </div>
   </div>
 }

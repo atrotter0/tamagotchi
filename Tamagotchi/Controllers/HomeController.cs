@@ -27,10 +27,62 @@ namespace Tamagotchi.Controllers
             });
         }
 
-        public ActionResult DisplayPetData()
+        public ActionResult DisplayPetData(int id)
         {
-            Console.WriteLine("made it to DisplayPetData");
-            return View();
+            TamagotchiPet pet = TamagotchiPet.Find(id);
+            List<TamagotchiPet> singlePetList = new List<TamagotchiPet>() { pet };
+            return View(singlePetList);
+        }
+
+        public ActionResult AddFood(int id)
+        {
+          TamagotchiPet pet = TamagotchiPet.Find(id);
+          pet.FoodReplenish();
+          return Json(new {
+            name = pet.GetName(),
+            id = pet.GetId(),
+            food = pet.GetFood(),
+            attention = pet.GetAttention(),
+            rest = pet.GetRest()
+          });
+        }
+
+        public ActionResult AddAttention(int id)
+        {
+          TamagotchiPet pet = TamagotchiPet.Find(id);
+          pet.AttentionReplenish();
+          return Json(new {
+            name = pet.GetName(),
+            id = pet.GetId(),
+            food = pet.GetFood(),
+            attention = pet.GetAttention(),
+            rest = pet.GetRest()
+          });
+        }
+
+        public ActionResult AddRest(int id)
+        {
+          TamagotchiPet pet = TamagotchiPet.Find(id);
+          pet.RestReplenish();
+          return Json(new {
+            name = pet.GetName(),
+            id = pet.GetId(),
+            food = pet.GetFood(),
+            attention = pet.GetAttention(),
+            rest = pet.GetRest()
+          });
+        }
+
+        public ActionResult Decay()
+        {
+          List<TamagotchiPet> allPets = TamagotchiPet.GetAll();
+          foreach(TamagotchiPet pet in allPets)
+          {
+            pet.FoodDecay();
+            pet.AttentionDecay();
+            pet.RestDecay();
+          }
+          return View("DisplayPetData", allPets);
         }
     }
 }
