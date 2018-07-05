@@ -8,7 +8,7 @@ function createPet(petName) {
     success: function (data) {
       console.log("Success!");
       console.log(data);
-      $('#result1').html(data.name);
+      //displayPetData();
     },
     error: function(error) {
       console.log("Error, not working: " + JSON.stringify(error));
@@ -16,9 +16,31 @@ function createPet(petName) {
   });
 }
 
+function displayPetData() {
+  $.ajax({
+    type: 'GET',
+    url: '/Home/DisplayPetData',
+    success: function (result) {
+      console.log("Success!");
+      $(".grid-container").append("<div>This is a new div!</div>");
+    },
+    error: function(error) {
+      console.log("Error, not appending: " + JSON.stringify(error));
+    }
+  });
+}
+
+function feedPet() {
+
+}
+
 $(document).ready(function() {
   $("#add-pet").click(function() {
     var name = $("#name").val();
     createPet(name);
+  });
+
+  $("#feed-pet").click(function() {
+    feedPet();
   });
 });

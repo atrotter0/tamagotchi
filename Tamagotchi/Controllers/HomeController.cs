@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Tamagotchi.Models;
 using System;
+using System.Collections.Generic;
 using Newtonsoft.Json;
 
 namespace Tamagotchi.Controllers
@@ -10,7 +11,8 @@ namespace Tamagotchi.Controllers
         [HttpGet("/")]
         public ActionResult Index()
         {
-            return View();
+            List<TamagotchiPet> allPets = TamagotchiPet.GetAll();
+            return View(allPets);
         }
 
         public ActionResult CreatePet(string name)
@@ -23,6 +25,12 @@ namespace Tamagotchi.Controllers
               attention = pet.GetAttention(),
               rest = pet.GetRest()
             });
+        }
+
+        public ActionResult DisplayPetData()
+        {
+            Console.WriteLine("made it to DisplayPetData");
+            return View();
         }
     }
 }

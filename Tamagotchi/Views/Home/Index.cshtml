@@ -14,7 +14,8 @@
       </div>
     </div>
     <div class="grid-container">
-      <div class="grid-item" id="result1"></div>
-      <div class="grid-item">2</div>
+      @{
+          await Html.RenderPartialAsync("_DisplayPetData");
+      }
     </div>
   </div>

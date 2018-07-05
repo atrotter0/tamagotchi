@@ -16,3 +16,9 @@
 .inline-element {
   display: inline-block;
 }
+
+.pet-image {
+  height: 33px;
+  width: 33px;
+  background-color: lightgray;
+}

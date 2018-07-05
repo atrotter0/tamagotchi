@@ -17,7 +17,8 @@ namespace Tamagotchi.Models
 
         public TamagotchiPet(string name)
         {
-            _name = name;
+            this.SetName(name);
+            _name = this.GetName();
             _food = 100;
             _attention = 100;
             _rest = 100;

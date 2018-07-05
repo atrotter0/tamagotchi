@@ -1,0 +1,24 @@
+@foreach (var pet in Model)
+{
+  <div class="grid-item" id="@pet.GetId()">
+    <div class="pet-id"></div>
+    <div class="pet-name">
+      <p>@pet.GetName()</p>
+    </div>
+    <div>
+      <img src="img/" class="pet-image" alt="tamagotchi image">
+    </div>
+    <div class="actions-btns">
+      <button class="btn btn-info feed-pet">feed</button>
+      <button class="btn btn-info play-pet">play</button>
+      <button class="btn btn-info rest-pet">rest</button>
+    </div>
+  </div>
+  <div class="grid-item">
+    <div class="pet-stats">
+      <p>Hunger: @pet.GetFood()</p>
+      <p>Happiness: @pet.GetAttention()</p>
+      <p>Energy: @pet.GetRest()</p>
+    </div>
+  </div>
+}
