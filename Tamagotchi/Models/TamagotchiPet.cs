@@ -15,8 +15,9 @@ namespace Tamagotchi.Models
 
         private static List<TamagotchiPet> _basket = new List<TamagotchiPet>() {};
 
-        public TamagotchiPet()
+        public TamagotchiPet(string name)
         {
+            _name = name;
             _food = 100;
             _attention = 100;
             _rest = 100;
