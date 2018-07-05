@@ -12,6 +12,7 @@ namespace Tamagotchi.Models
         private int _decayValue = 10;
         private int _replenishValue = 10;
         private int _id;
+        private bool _isDead = false;
 
         private static List<TamagotchiPet> _basket = new List<TamagotchiPet>() {};
 
@@ -69,6 +70,7 @@ namespace Tamagotchi.Models
         public void FoodReplenish()
         {
             _food += this.GetReplenishValue();
+            _food = this.StatCheck(_food);
         }
 
         public int GetFood()
@@ -84,6 +86,7 @@ namespace Tamagotchi.Models
         public void AttentionReplenish()
         {
             _attention += this.GetReplenishValue();
+            _attention = this.StatCheck(_attention);
         }
 
         public int GetAttention()
@@ -99,6 +102,7 @@ namespace Tamagotchi.Models
         public void RestReplenish()
         {
             _rest += this.GetReplenishValue();
+            _rest = this.StatCheck(_rest);
         }
 
         public int GetRest()
@@ -118,7 +122,25 @@ namespace Tamagotchi.Models
 
         public static TamagotchiPet Find(int searchId)
         {
-           return _basket[searchId-1];
+            return _basket[searchId-1];
+        }
+
+        public bool CheckVitals()
+        {
+            if (this.GetFood() <= 0 || this.GetAttention() <= 0 || this.GetRest() <= 0)
+            {
+              this._isDead = true;
+            }
+            return _isDead;
+        }
+
+        public int StatCheck(int stat)
+        {
+            if (stat > 100)
+            {
+                stat = 100;
+            }
+            return stat;
         }
     }
 }
