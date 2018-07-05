@@ -11,6 +11,7 @@ namespace Tamagotchi.Models
         private int _rest;
         private int _decayValue = 10;
         private int _replenishValue = 10;
+        private int _id;
 
         private static List<TamagotchiPet> _basket = new List<TamagotchiPet>() {};
 
@@ -19,6 +20,8 @@ namespace Tamagotchi.Models
             _food = 100;
             _attention = 100;
             _rest = 100;
+            _basket.Add(this);
+            _id = _basket.Count;
         }
 
         public void SetName(string name)
@@ -29,6 +32,11 @@ namespace Tamagotchi.Models
         public string GetName()
         {
             return _name;
+        }
+
+        public int GetId()
+        {
+            return _id;
         }
 
         public void SetDecayValue(int decayValue)
@@ -94,6 +102,21 @@ namespace Tamagotchi.Models
         public int GetRest()
         {
             return _rest;
+        }
+
+        public static List<TamagotchiPet> GetAll()
+        {
+            return _basket;
+        }
+
+        public static void ClearAll()
+        {
+            _basket.Clear();
+        }
+
+        public static TamagotchiPet Find(int searchId)
+        {
+           return _basket[searchId-1];
         }
     }
 }

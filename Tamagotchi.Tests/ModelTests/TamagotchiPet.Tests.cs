@@ -6,8 +6,13 @@ using Tamagotchi.Models;
 namespace Tamagotchi.Tests
 {
     [TestClass]
-    public class TamagotchiPetTest
+    public class TamagotchiPetTest : IDisposable
     {
+        public void Dispose()
+        {
+            TamagotchiPet.ClearAll();
+        }
+
         [TestMethod]
         public void SetGetDecayValue_SetsGetsDecayValue_Int()
         {
@@ -78,6 +83,41 @@ namespace Tamagotchi.Tests
             TamagotchiPet pet = new TamagotchiPet();
             pet.RestReplenish();
             Assert.AreEqual(110, pet.GetRest());
+        }
+
+        [TestMethod]
+        public void SetId_GetsId_Int()
+        {
+            TamagotchiPet pet = new TamagotchiPet();
+            Assert.AreEqual(1, pet.GetId());
+        }
+
+        [TestMethod]
+        public void GetAll_GetsAllInstancesOfTamagotchiPet_List()
+        {
+            TamagotchiPet pet1 = new TamagotchiPet();
+            TamagotchiPet pet2 = new TamagotchiPet();
+            TamagotchiPet pet3 = new TamagotchiPet();
+            List<TamagotchiPet> TamagotchiPetList = new List<TamagotchiPet> { pet1, pet2, pet3 };
+            CollectionAssert.AreEqual(TamagotchiPetList, TamagotchiPet.GetAll());
+        }
+
+        [TestMethod]
+        public void ClearAll_ClearsAllInstancesOfBasket_Int()
+        {
+            TamagotchiPet pet1 = new TamagotchiPet();
+            TamagotchiPet pet2 = new TamagotchiPet();
+            TamagotchiPet pet3 = new TamagotchiPet();
+            TamagotchiPet.ClearAll();
+            List<TamagotchiPet> emptyList = new List<TamagotchiPet>() {};
+            CollectionAssert.AreEqual(emptyList, TamagotchiPet.GetAll());
+        }
+
+        [TestMethod]
+        public void Find_FindsTamagotchiPetById_TamagotchiPet()
+        {
+            TamagotchiPet pet = new TamagotchiPet();
+            Assert.AreEqual(pet, TamagotchiPet.Find(1));
         }
     }
 }
