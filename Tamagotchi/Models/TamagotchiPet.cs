@@ -5,24 +5,24 @@ namespace Tamagotchi.Models
 {
     public class TamagotchiPet
     {
+        const int MAX_STAT = 100;
         private string _name;
         private int _food;
         private int _attention;
         private int _rest;
-        private int _decayValue = 0;
-        private int _replenishValue = 10;
+        private int _decayValue;
+        private int _replenishValue;
         private int _id;
         private bool _isDead = false;
-
         private static List<TamagotchiPet> _basket = new List<TamagotchiPet>() {};
 
         public TamagotchiPet(string name)
         {
             this.SetName(name);
             _name = this.GetName();
-            _food = 100;
-            _attention = 100;
-            _rest = 100;
+            _food = MAX_STAT;
+            _attention = MAX_STAT;
+            _rest = MAX_STAT;
             _basket.Add(this);
             _id = _basket.Count;
         }
@@ -74,7 +74,7 @@ namespace Tamagotchi.Models
         public void FoodReplenish()
         {
             _food += this.GetReplenishValue();
-            _food = this.StatCheck(_food);
+            _food = this.CheckForMax(_food);
         }
 
         public int GetFood()
@@ -90,7 +90,7 @@ namespace Tamagotchi.Models
         public void AttentionReplenish()
         {
             _attention += this.GetReplenishValue();
-            _attention = this.StatCheck(_attention);
+            _attention = this.CheckForMax(_attention);
         }
 
         public int GetAttention()
@@ -106,12 +106,21 @@ namespace Tamagotchi.Models
         public void RestReplenish()
         {
             _rest += this.GetReplenishValue();
-            _rest = this.StatCheck(_rest);
+            _rest = this.CheckForMax(_rest);
         }
 
         public int GetRest()
         {
             return _rest;
+        }
+
+        public int CheckForMax(int stat)
+        {
+            if (stat > MAX_STAT)
+            {
+                stat = MAX_STAT;
+            }
+            return stat;
         }
 
         public static List<TamagotchiPet> GetAll()
@@ -129,22 +138,23 @@ namespace Tamagotchi.Models
             return _basket[searchId-1];
         }
 
+        public void SetIsDead(bool isDead)
+        {
+            _isDead = isDead;
+        }
+
+        public bool GetIsDead()
+        {
+            return _isDead;
+        }
+
         public bool CheckVitals()
         {
             if (this.GetFood() <= 0 || this.GetAttention() <= 0 || this.GetRest() <= 0)
             {
-              this._isDead = true;
+                this.SetIsDead(true);
             }
-            return _isDead;
-        }
-
-        public int StatCheck(int stat)
-        {
-            if (stat > 100)
-            {
-                stat = 100;
-            }
-            return stat;
+            return this.GetIsDead();
         }
     }
 }

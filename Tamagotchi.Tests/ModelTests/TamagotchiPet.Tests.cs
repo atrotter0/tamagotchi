@@ -95,6 +95,14 @@ namespace Tamagotchi.Tests
         }
 
         [TestMethod]
+        public void SetGetIsDead_SetsGetsIsDead_Bool()
+        {
+            TamagotchiPet pet = new TamagotchiPet("Anton");
+            pet.SetIsDead(true);
+            Assert.AreEqual(true, pet.GetIsDead());
+        }
+
+        [TestMethod]
         public void GetAll_GetsAllInstancesOfTamagotchiPet_List()
         {
             TamagotchiPet pet1 = new TamagotchiPet("Antony");
