@@ -137,5 +137,17 @@ namespace Tamagotchi.Tests
             pet.FoodReplenish();
             Assert.AreEqual(100, pet.GetFood());
         }
+
+        [TestMethod]
+        public void CheckVitals_ChecksIfPetIsDead_Bool()
+        {
+            TamagotchiPet pet = new TamagotchiPet("Tan");
+            for(int i = 0; i < 20; i++)
+            {
+                pet.FoodDecay();
+            }
+            pet.CheckVitals();
+            Assert.AreEqual(true, pet.GetIsDead());
+        }
     }
 }
