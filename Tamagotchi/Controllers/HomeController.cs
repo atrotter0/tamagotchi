@@ -2,7 +2,6 @@ using Microsoft.AspNetCore.Mvc;
 using Tamagotchi.Models;
 using System;
 using System.Collections.Generic;
-using Newtonsoft.Json;
 
 namespace Tamagotchi.Controllers
 {
