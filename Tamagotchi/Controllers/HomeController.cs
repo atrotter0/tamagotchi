@@ -38,6 +38,8 @@ namespace Tamagotchi.Controllers
         {
           TamagotchiPet pet = TamagotchiPet.Find(id);
           pet.FoodReplenish();
+          pet.RestDecay();
+          pet.AttentionDecay();
           return Json(new {
             name = pet.GetName(),
             id = pet.GetId(),
@@ -51,6 +53,8 @@ namespace Tamagotchi.Controllers
         {
           TamagotchiPet pet = TamagotchiPet.Find(id);
           pet.AttentionReplenish();
+          pet.FoodDecay();
+          pet.RestDecay();
           return Json(new {
             name = pet.GetName(),
             id = pet.GetId(),
@@ -64,6 +68,8 @@ namespace Tamagotchi.Controllers
         {
           TamagotchiPet pet = TamagotchiPet.Find(id);
           pet.RestReplenish();
+          pet.FoodDecay();
+          pet.AttentionDecay();
           return Json(new {
             name = pet.GetName(),
             id = pet.GetId(),

@@ -1,11 +1,22 @@
 var seconds = 0;
 
-function timer() {
+function startTimer() {
+  if (petsCreated() && timerNotGoing()) runTimer();
+}
+
+function petsCreated() {
+  return ($(".grid-item").length / 2) > 0;
+}
+
+function timerNotGoing() {
+  return seconds <= 0;
+}
+
+function runTimer() {
   console.log(seconds++);
-  if (seconds % 3 == 0) {
-    decay();
-  }
-  setTimeout(function() { timer(); }, 1000);
+  if (seconds % 10 == 0) runPetDecay();
+
+  setTimeout(function() { runTimer(); }, 1000);
 }
 
 function createPet(petName) {
@@ -16,7 +27,6 @@ function createPet(petName) {
     contentType: 'application/json',
     url: '/Home/CreatePet',
     success: function (data) {
-      console.log(data);
       displayPetData(data.id);
     },
     error: function(error) {
@@ -31,7 +41,6 @@ function displayPetData(id) {
     data: { id: id },
     url: '/Home/DisplayPetData',
     success: function (result) {
-      console.log("Appended new pet");
       $(".grid-container").append(result);
     },
     error: function(error) {
@@ -48,7 +57,6 @@ function feedPet(id) {
     contentType: 'application/json',
     url: '/Home/AddFood',
     success: function (data) {
-      console.log(data);
       updatePetData(data);
     },
     error: function(error) {
@@ -65,7 +73,6 @@ function playPet(id) {
     contentType: 'application/json',
     url: '/Home/AddAttention',
     success: function (data) {
-      console.log(data);
       updatePetData(data);
     },
     error: function(error) {
@@ -82,7 +89,6 @@ function restPet(id) {
     contentType: 'application/json',
     url: '/Home/AddRest',
     success: function (data) {
-      console.log(data);
       updatePetData(data);
     },
     error: function(error) {
@@ -91,12 +97,11 @@ function restPet(id) {
   });
 }
 
-function decay() {
+function runPetDecay() {
   $.ajax({
     type: 'GET',
     url: '/Home/Decay',
     success: function (result) {
-      console.log("Success");
       $(".grid-container").html(result);
     }
   });
@@ -108,31 +113,40 @@ function updatePetData(data) {
   $("#pet-energy-" + data.id).text(data.rest);
 }
 
+function getId(element) {
+  return $(element).parents().parents(".grid-item").attr("id");
+}
+
+function disableBtn(element) {
+  $(element).prop("disabled", true);
+}
+
 $(document).ready(function() {
-  timer();
+  startTimer();
 
   $("#add-pet").click(function(e) {
     e.preventDefault();
 
+    startTimer();
     var name = $("#name").val();
     createPet(name);
   });
 
   $(document).on("click", ".feed-pet", function() {
-    var id = $(this).parents().parents(".grid-item").attr("id");
+    var id = getId(this);
     feedPet(id);
-    $(this).prop("disabled", true);
+    disableBtn(this);
   });
 
   $(document).on("click", ".play-pet", function() {
-    var id = $(this).parents().parents(".grid-item").attr("id");
+    var id = getId(this);
     playPet(id);
-    $(this).prop("disabled", true);
+    disableBtn(this);
   });
 
   $(document).on("click", ".rest-pet", function() {
-    var id = $(this).parents().parents(".grid-item").attr("id");
+    var id = getId(this);
     restPet(id);
-    $(this).prop("disabled", true);
+    disableBtn(this);
   });
 });
