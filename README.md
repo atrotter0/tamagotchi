@@ -1,12 +1,12 @@
-# Project Name Here
+# Tamagotchi Simulator
 
-#### Epicodus C# exercise, date
+#### Epicodus C# exercise, 07.05.18
 
-#### By Your Name Here
+#### By Abel Trotter & David Ngo
 
 ## Description
 
-Add a description here
+A remake of the classic Tamagotchi toy. Add a tamagotchi and try and keep it alive!
 
 ## Specs
 
@@ -34,13 +34,12 @@ Add a description here
 ## Technologies Used
 
 * .Net Core 1.1.4
-
-## Links
-
-* Add links here
+* JavaScript
+* jQuery
+* AJAX
 
 ## License
 
 This software is licensed under the MIT license.
 
-Copyright (c) 2018 **Your Name Here**
+Copyright (c) 2018 **Abel Trotter & David Ngo**
