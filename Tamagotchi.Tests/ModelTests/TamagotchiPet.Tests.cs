@@ -129,5 +129,13 @@ namespace Tamagotchi.Tests
             TamagotchiPet pet = new TamagotchiPet("Tan");
             Assert.AreEqual(pet, TamagotchiPet.Find(1));
         }
+
+        [TestMethod]
+        public void CheckForMax_ChecksIfStatIsHigherThanMax_Int()
+        {
+            TamagotchiPet pet = new TamagotchiPet("Tan");
+            pet.FoodReplenish();
+            Assert.AreEqual(100, pet.GetFood());
+        }
     }
 }
