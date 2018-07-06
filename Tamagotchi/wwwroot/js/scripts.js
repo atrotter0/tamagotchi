@@ -127,9 +127,9 @@ $(document).ready(function() {
   $("#add-pet").click(function(e) {
     e.preventDefault();
 
-    startTimer();
     var name = $("#name").val();
     createPet(name);
+    setTimeout(function() { startTimer() }, 3000);
   });
 
   $(document).on("click", ".feed-pet", function() {
