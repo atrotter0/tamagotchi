@@ -1,3 +1,19 @@
+.shadow {
+  text-shadow: 1px 1px 10px #ada4a4;
+}
+
+.light-shadow {
+  text-shadow: 1px 1px 2px #ada4a4;
+}
+
+#name {
+  padding: 20px;
+}
+
+#add-pet {
+  padding: 10px;
+}
+
 .grid-container {
   display: grid;
   grid-template-columns: auto auto;
@@ -8,11 +24,11 @@
   padding: 20px;
   font-size: 30px;
   text-align: center;
-  height: 200px;
+  height: 220px;
 }
 
-.inline-element {
-  display: inline-block;
+.pet-name {
+  margin-bottom: 30px;
 }
 
 .pet-image {
@@ -20,10 +36,10 @@
   width: 66px;
 }
 
-.pet {
+.pet-box {
   border: 1px solid rgba(0, 0, 0, 0.8);
   border-radius: 3px;
-  box-shadow: 2px 2px 10px #4e4e4e;
+  box-shadow: 2px 2px 10px #4e4e4e94;
   display: block;
 }
 

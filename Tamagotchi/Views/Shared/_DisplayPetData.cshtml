@@ -1,34 +1,34 @@
 @foreach (var pet in Model)
 {
-  <div class="pet">
-      @if (!pet.CheckVitals())
-      {
-        <div class="grid-item" id="@pet.GetId()">
-          <div class="pet-name">
-            <p>@pet.GetName()</p>
-          </div>
-          <div>
-            <img src="img/rev-tamagotchi.gif" class="pet-image" alt="tamagotchi image">
-          </div>
-          <div class="actions-btns">
-            <button class="btn btn-info feed-pet">feed</button>
-            <button class="btn btn-info play-pet">play</button>
-            <button class="btn btn-info rest-pet">rest</button>
-          </div>
+  <div class="pet-box">
+    @if (!pet.CheckVitals())
+    {
+      <div class="grid-item" id="@pet.GetId()">
+        <div class="pet-name">
+          <h3 class="light-shadow">@pet.GetName()</h3>
         </div>
-        <div class="grid-item">
-          <div class="pet-stats">
-            <p>Hunger: <span id="pet-hunger-@pet.GetId()">@pet.GetFood()</span></p>
-            <p>Happiness: <span id="pet-happiness-@pet.GetId()">@pet.GetAttention()</span></p>
-            <p>Energy: <span id="pet-energy-@pet.GetId()">@pet.GetRest()</span></p>
-          </div>
+        <div>
+          <img src="img/rev-tamagotchi.gif" class="pet-image" alt="tamagotchi image">
         </div>
+        <div class="actions-btns">
+          <button class="btn btn-info feed-pet">Feed</button>
+          <button class="btn btn-info play-pet">Play</button>
+          <button class="btn btn-info rest-pet">Rest</button>
+        </div>
+      </div>
+      <div class="grid-item">
+        <div class="pet-stats">
+          <p>Hunger: <span id="pet-hunger-@pet.GetId()">@pet.GetFood()</span></p>
+          <p>Happiness: <span id="pet-happiness-@pet.GetId()">@pet.GetAttention()</span></p>
+          <p>Energy: <span id="pet-energy-@pet.GetId()">@pet.GetRest()</span></p>
+        </div>
+      </div>
     }
     else
     {
       <div class="grid-item" id="@pet.GetId()">
         <div class="pet-name">
-          <p>@pet.GetName() has died!</p>
+          <h3 class="light-shadow">@pet.GetName() has died!</h3>
         </div>
         <div>
           <img src="img/skull.gif" class="pet-image" alt="tamagotchi image">
