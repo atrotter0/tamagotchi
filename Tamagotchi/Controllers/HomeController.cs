@@ -80,6 +80,8 @@ namespace Tamagotchi.Controllers
               pet.FoodDecay();
               pet.AttentionDecay();
               pet.RestDecay();
+
+              if (!pet.GetIsDead()) pet.AddExp();
           }
           return View("DisplayPetData", allPets);
         }

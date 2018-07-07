@@ -17,6 +17,8 @@ namespace Tamagotchi.Models
 
         private string _name;
         private int _level = 1;
+        private int _experience;
+        private int _nextLevel = 5;
         private int _food;
         private int _attention;
         private int _rest;
@@ -62,6 +64,31 @@ namespace Tamagotchi.Models
         public void LevelUp()
         {
             _level++;
+        }
+
+        public int GetExp()
+        {
+            return _experience;
+        }
+
+        public void AddExp()
+        {
+            _experience++;
+        }
+
+        public void ResetExp()
+        {
+            _experience = 0;
+        }
+
+        public int GetNextLevel()
+        {
+            return _nextLevel;
+        }
+
+        public void IncrementNextLevel()
+        {
+            _nextLevel *= 2;
         }
 
         public void GenerateRandomSeed()

@@ -30,6 +30,23 @@ namespace Tamagotchi.Tests
         }
 
         [TestMethod]
+        public void AddExpGetExp_AddsExpAndGetsExp_Int()
+        {
+            TamagotchiPet pet = new TamagotchiPet("Anton");
+            pet.AddExp();
+            pet.AddExp();
+            Assert.AreEqual(2, pet.GetExp());
+        }
+
+        [TestMethod]
+        public void IncrementGetNextLevel_IncrementsGetsNextLevel_Int()
+        {
+            TamagotchiPet pet = new TamagotchiPet("Anton");
+            pet.IncrementNextLevel();
+            Assert.AreEqual(10, pet.GetNextLevel());
+        }
+
+        [TestMethod]
         public void SetGetDecayValue_SetsGetsDecayValue_Int()
         {
             TamagotchiPet pet = new TamagotchiPet("Anton");
