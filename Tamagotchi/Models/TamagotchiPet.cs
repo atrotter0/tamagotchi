@@ -63,6 +63,8 @@ namespace Tamagotchi.Models
 
         public void LevelUp()
         {
+            this.IncrementNextLevel();
+            this.LevelUpReplenish();
             _level++;
         }
 
@@ -129,6 +131,16 @@ namespace Tamagotchi.Models
         {
             this.SetReplenishValue(min, max);
             return _replenishValue;
+        }
+
+        public void LevelUpReplenish()
+        {
+            _food += this.GetReplenishValue(_MAX_REPLENISH_START, _MAX_REPLENISH_END);
+            _food = this.CheckForMax(_food);
+            _attention += this.GetReplenishValue(_MAX_REPLENISH_START, _MAX_REPLENISH_END);
+            _attention = this.CheckForMax(_attention);
+            _rest += this.GetReplenishValue(_MAX_REPLENISH_START, _MAX_REPLENISH_END);
+            _rest = this.CheckForMax(_rest);
         }
 
         public void FoodDecay()
