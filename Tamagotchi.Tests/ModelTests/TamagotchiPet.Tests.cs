@@ -149,5 +149,13 @@ namespace Tamagotchi.Tests
             pet.CheckVitals();
             Assert.AreEqual(true, pet.GetIsDead());
         }
+
+        [TestMethod]
+        public void SetBuryGetIsBuried_GetsSetsBuried_True()
+        {
+            TamagotchiPet pet = new TamagotchiPet("Tan");
+            pet.Bury();
+            Assert.AreEqual(true, pet.IsBuried());
+        }
     }
 }
