@@ -6,6 +6,28 @@
   text-shadow: 1px 1px 1px #ada4a4;
 }
 
+a {
+  font-size: 20px;
+}
+
+#rulesBtn {
+  font-family: 'Gaegu', cursive;
+}
+
+.bold-text {
+  font-weight: bold;
+  text-shadow: 1px 1px 0px #444;
+  letter-spacing: 1px;
+}
+
+.modal-content {
+  font-family: 'Gaegu', cursive;
+}
+
+.modal-body p {
+  font-size: 20px;
+}
+
 #name {
   margin-top: 40px;
   padding: 20px;
