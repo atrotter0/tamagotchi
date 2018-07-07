@@ -14,7 +14,7 @@ function timerNotGoing() {
 
 function runTimer() {
   console.log(seconds++);
-  if (seconds % 3 == 0) runPetDecay();
+  if (seconds % 10 == 0) runPetDecay();
 
   setTimeout(function() { runTimer(); }, 1000);
 }
