@@ -1,9 +1,9 @@
 .shadow {
-  text-shadow: 1px 1px 10px #ada4a4;
+  text-shadow: 1px 1px 5px #ada4a4;
 }
 
 .light-shadow {
-  text-shadow: 1px 1px 5px #ada4a4;
+  text-shadow: 1px 1px 1px #ada4a4;
 }
 
 #name {
