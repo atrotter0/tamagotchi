@@ -238,5 +238,28 @@ namespace Tamagotchi.Models
         public bool IsBuried() {
             return _buried;
         }
+
+        public void RunLifeCycle()
+        {
+            this.FoodDecay();
+            this.AttentionDecay();
+            this.RestDecay();
+            this.CheckExp();
+            this.CheckForLevel();
+        }
+
+        public void CheckExp()
+        {
+            if (!this.GetIsDead()) this.AddExp();
+        }
+
+        public void CheckForLevel()
+        {
+            if (!this.GetIsDead() && this.GetExp() >= this.GetNextLevel())
+            {
+              this.ResetExp();
+              this.LevelUp();
+            }
+        }
     }
 }

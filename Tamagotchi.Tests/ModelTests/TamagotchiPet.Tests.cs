@@ -184,5 +184,46 @@ namespace Tamagotchi.Tests
             pet.Bury();
             Assert.AreEqual(true, pet.IsBuried());
         }
+
+        [TestMethod]
+        public void CheckExp_AddExpWhenPetIsAlive_Int()
+        {
+            TamagotchiPet pet = new TamagotchiPet("Bit");
+            pet.CheckExp();
+            Assert.AreEqual(1, pet.GetExp());
+        }
+
+        [TestMethod]
+        public void CheckExp_DoesNotAddExpWhenPetIsDead_Int()
+        {
+            TamagotchiPet pet = new TamagotchiPet("Bit");
+            pet.SetIsDead(true);
+            pet.CheckExp();
+            Assert.AreEqual(0, pet.GetExp());
+        }
+
+        [TestMethod]
+        public void CheckForLevel_AddsLevelAndResetsExpWhenPetIsAlive_Int()
+        {
+            TamagotchiPet pet = new TamagotchiPet("Bit");
+            for (int i = 0; i < 5; i++)
+            {
+                pet.AddExp();
+            }
+            pet.CheckForLevel();
+            Assert.AreEqual(2, pet.GetLevel());
+            Assert.AreEqual(0, pet.GetExp());
+        }
+
+        [TestMethod]
+        public void CheckForLevel_DoesNotAddLevelDoesNotResetExpWhenPetIsDead_Int()
+        {
+            TamagotchiPet pet = new TamagotchiPet("Bit");
+            pet.AddExp();
+            pet.SetIsDead(true);
+            pet.CheckForLevel();
+            Assert.AreEqual(1, pet.GetLevel());
+            Assert.AreEqual(1, pet.GetExp());
+        }
     }
 }

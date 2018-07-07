@@ -89,11 +89,7 @@ namespace Tamagotchi.Controllers
           List<TamagotchiPet> allPets = TamagotchiPet.GetAll();
           foreach(TamagotchiPet pet in allPets)
           {
-              pet.FoodDecay();
-              pet.AttentionDecay();
-              pet.RestDecay();
-
-              if (!pet.GetIsDead()) pet.AddExp();
+              pet.RunLifeCycle();
           }
           return View("DisplayPetData", allPets);
         }
