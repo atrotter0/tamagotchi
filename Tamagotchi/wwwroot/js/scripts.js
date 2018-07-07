@@ -118,7 +118,11 @@ function getId(element) {
 }
 
 function disableBtn(element) {
-  $(element).prop("disabled", true);
+  $(element).prop("disabled", true).parents(".actions-btns").slideToggle(200);
+}
+
+function showProcessingGif(element) {
+  $(element).parents().siblings(".process-icon-box").fadeIn(2000);
 }
 
 function buryPet(id) {
@@ -128,7 +132,7 @@ function buryPet(id) {
     url: '/pet/bury/' + id,
     success: function (result) {
       console.log("Success!");
-      $(".grid-container").append(result);
+      $(".grid-container").html(result);
     },
     error: function(error) {
       console.log("Error, not appending: " + JSON.stringify(error));
@@ -151,23 +155,27 @@ $(document).ready(function() {
     var id = getId(this);
     feedPet(id);
     disableBtn(this);
+    showProcessingGif(this)
   });
 
   $(document).on("click", ".play-pet", function() {
     var id = getId(this);
     playPet(id);
     disableBtn(this);
+    showProcessingGif(this)
   });
 
   $(document).on("click", ".rest-pet", function() {
     var id = getId(this);
     restPet(id);
     disableBtn(this);
+    showProcessingGif(this)
   });
 
   $(document).on("click", ".bury-pet", function() {
     var id = getId(this);
     buryPet(id);
     disableBtn(this);
+    showProcessingGif(this);
   });
 });
