@@ -5,7 +5,13 @@ namespace Tamagotchi.Models
 {
     public class TamagotchiPet
     {
-        const int MAX_STAT = 100;
+        private const int _MIN_REPLENISH_START = 1;
+        private const int _MIN_REPLENISH_END = 11;
+        private const int _MID_REPLENISH_START = 5;
+        private const int _MID_REPLENISH_END = 11;
+        private const int _MAX_REPLENISH_START = 10;
+        private const int _MAX_REPLENISH_END = 21;
+        private const int _MAX_STAT = 100;
         private string _name;
         private int _food;
         private int _attention;
@@ -21,9 +27,9 @@ namespace Tamagotchi.Models
         {
             this.SetName(name);
             _name = this.GetName();
-            _food = MAX_STAT;
-            _attention = MAX_STAT;
-            _rest = MAX_STAT;
+            _food = _MAX_STAT;
+            _attention = _MAX_STAT;
+            _rest = _MAX_STAT;
             _basket.Add(this);
             _id = _basket.Count;
         }
@@ -55,15 +61,15 @@ namespace Tamagotchi.Models
             return _decayValue;
         }
 
-        public void SetReplenishValue()
+        public void SetReplenishValue(int min, int max)
         {
             Random random = new Random();
-            _replenishValue = random.Next(5, 15);
+            _replenishValue = random.Next(min, max);
         }
 
-        public int GetReplenishValue()
+        public int GetReplenishValue(int min, int max)
         {
-            this.SetReplenishValue();
+            this.SetReplenishValue(min, max);
             return _replenishValue;
         }
 
@@ -74,8 +80,12 @@ namespace Tamagotchi.Models
 
         public void FoodReplenish()
         {
-            _food += this.GetReplenishValue();
+            _food += this.GetReplenishValue(_MIN_REPLENISH_START, _MIN_REPLENISH_END);
             _food = this.CheckForMax(_food);
+            _attention += this.GetReplenishValue(_MIN_REPLENISH_START, _MID_REPLENISH_END);
+            _attention = this.CheckForMax(_rest);
+            _rest += this.GetReplenishValue(_MIN_REPLENISH_START, _MID_REPLENISH_END);
+            _rest = this.CheckForMax(_rest);
         }
 
         public int GetFood()
@@ -90,8 +100,10 @@ namespace Tamagotchi.Models
 
         public void AttentionReplenish()
         {
-            _attention += this.GetReplenishValue();
+            _attention += this.GetReplenishValue(_MAX_REPLENISH_START, _MAX_REPLENISH_END);
             _attention = this.CheckForMax(_attention);
+            this.RestDecay();
+            this.FoodDecay();
         }
 
         public int GetAttention()
@@ -106,8 +118,11 @@ namespace Tamagotchi.Models
 
         public void RestReplenish()
         {
-            _rest += this.GetReplenishValue();
+            _rest += this.GetReplenishValue(_MID_REPLENISH_START, _MID_REPLENISH_END);
             _rest = this.CheckForMax(_rest);
+            _attention += this.GetReplenishValue(_MID_REPLENISH_START, _MID_REPLENISH_END);
+            _attention = this.CheckForMax(_attention);
+            this.FoodDecay();
         }
 
         public int GetRest()
@@ -117,9 +132,9 @@ namespace Tamagotchi.Models
 
         public int CheckForMax(int stat)
         {
-            if (stat > MAX_STAT)
+            if (stat > _MAX_STAT)
             {
-                stat = MAX_STAT;
+                stat = _MAX_STAT;
             }
             return stat;
         }

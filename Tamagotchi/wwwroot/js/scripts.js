@@ -41,7 +41,7 @@ function displayPetData(id) {
     data: { id: id },
     url: '/Home/DisplayPetData',
     success: function (result) {
-      $(".grid-container").append(result);
+      $(".grid-container").append(result).hide().slideDown(1200);
     },
     error: function(error) {
       console.log("Error, not appending: " + JSON.stringify(error));
@@ -108,9 +108,9 @@ function runPetDecay() {
 }
 
 function updatePetData(data) {
-  $("#pet-hunger-" + data.id).text(data.food);
-  $("#pet-happiness-" + data.id).text(data.attention);
-  $("#pet-energy-" + data.id).text(data.rest);
+  $("#pet-hunger-" + data.id).text(data.food).effect("pulsate");
+  $("#pet-happiness-" + data.id).text(data.attention).effect("pulsate");
+  $("#pet-energy-" + data.id).text(data.rest).effect("pulsate");
 }
 
 function getId(element) {
