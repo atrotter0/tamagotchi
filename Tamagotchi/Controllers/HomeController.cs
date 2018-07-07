@@ -83,11 +83,20 @@ namespace Tamagotchi.Controllers
           List<TamagotchiPet> allPets = TamagotchiPet.GetAll();
           foreach(TamagotchiPet pet in allPets)
           {
-            pet.FoodDecay();
-            pet.AttentionDecay();
-            pet.RestDecay();
+              pet.FoodDecay();
+              pet.AttentionDecay();
+              pet.RestDecay();
           }
           return View("DisplayPetData", allPets);
+        }
+
+        [HttpPost("/pet/bury/{id}")]
+        public ActionResult BuryPet(int id)
+        {
+            TamagotchiPet pet = TamagotchiPet.Find(id);
+            pet.Bury();
+            List<TamagotchiPet> allPets = TamagotchiPet.GetAll();
+            return View("DisplayPetData", allPets);
         }
     }
 }

@@ -14,6 +14,7 @@ namespace Tamagotchi.Models
         private int _replenishValue;
         private int _id;
         private bool _isDead = false;
+        private bool _buried = false;
         private static List<TamagotchiPet> _basket = new List<TamagotchiPet>() {};
 
         public TamagotchiPet(string name)
@@ -155,6 +156,14 @@ namespace Tamagotchi.Models
                 this.SetIsDead(true);
             }
             return this.GetIsDead();
+        }
+
+        public void Bury() {
+            _buried = true;
+        }
+
+        public bool IsBuried() {
+            return _buried;
         }
     }
 }

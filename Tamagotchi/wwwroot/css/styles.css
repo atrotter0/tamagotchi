@@ -46,3 +46,14 @@
 .actions-btns {
   margin-top: 20px;
 }
+
+#bury-btn {
+  margin-top: 50px;
+  background-color: #444;
+  border: none;
+}
+
+#bury-btn:focus {
+  background-color: #4e4e4e;
+  border: none;
+}

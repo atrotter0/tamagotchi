@@ -14,7 +14,7 @@ function timerNotGoing() {
 
 function runTimer() {
   console.log(seconds++);
-  if (seconds % 10 == 0) runPetDecay();
+  if (seconds % 3 == 0) runPetDecay();
 
   setTimeout(function() { runTimer(); }, 1000);
 }
@@ -121,6 +121,21 @@ function disableBtn(element) {
   $(element).prop("disabled", true);
 }
 
+function buryPet(id) {
+  $.ajax({
+    type: 'POST',
+    data: { id: id },
+    url: '/pet/bury/' + id,
+    success: function (result) {
+      console.log("Success!");
+      $(".grid-container").append(result);
+    },
+    error: function(error) {
+      console.log("Error, not appending: " + JSON.stringify(error));
+    }
+  });
+}
+
 $(document).ready(function() {
   startTimer();
 
@@ -148,5 +163,10 @@ $(document).ready(function() {
     var id = getId(this);
     restPet(id);
     disableBtn(this);
+  });
+
+  $(document).on("click", ".bury-pet", function() {
+    var id = getId(this);
+    buryPet(id);
   });
 });

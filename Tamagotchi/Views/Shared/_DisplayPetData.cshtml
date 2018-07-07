@@ -1,8 +1,8 @@
 @foreach (var pet in Model)
 {
-  <div class="pet-box">
-    @if (!pet.CheckVitals())
-    {
+  @if (!pet.CheckVitals() && !pet.IsBuried())
+  {
+    <div class="pet-box">
       <div class="grid-item" id="@pet.GetId()">
         <div class="pet-name">
           <h3 class="light-shadow">@pet.GetName()</h3>
@@ -23,9 +23,11 @@
           <p>Energy: <span id="pet-energy-@pet.GetId()">@pet.GetRest()</span></p>
         </div>
       </div>
-    }
-    else
-    {
+    </div>
+  }
+  else if (!pet.IsBuried())
+  {
+    <div class="pet-box">
       <div class="grid-item" id="@pet.GetId()">
         <div class="pet-name">
           <h3 class="light-shadow">@pet.GetName() has died!</h3>
@@ -33,11 +35,14 @@
         <div>
           <img src="img/skull.gif" class="pet-image" alt="tamagotchi image">
         </div>
+        <div class="actions-btns">
+          <button class="btn btn-info bury-pet" id="bury-btn">Bury</button>
+        </div>
       </div>
       <div class="grid-item">
         <div class="pet-stats">
         </div>
       </div>
-    }
-  </div>
+    </div>
+  }
 }

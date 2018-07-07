@@ -35,8 +35,14 @@ A remake of the classic Tamagotchi toy. Add a tamagotchi and try and keep it ali
 
 * .Net Core 1.1.4
 * JavaScript
-* jQuery
+* jQuery 3.3.1
 * AJAX
+* Bootstrap 3.3.7
+
+## Links
+
+* [Github Repo] (https://github.com/atrotter0/tamagotchi)
+* [Heroku App] (https://tamagotchi-dotnet.herokuapp.com/)
 
 ## License
 
