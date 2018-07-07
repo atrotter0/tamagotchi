@@ -14,6 +14,22 @@ namespace Tamagotchi.Tests
         }
 
         [TestMethod]
+        public void SetGetName_ReturnsName_String()
+        {
+            TamagotchiPet pet = new TamagotchiPet("Anton");
+            pet.SetName("Tamagot");
+            Assert.AreEqual("Tamagotchi", pet.GetName());
+        }
+
+        [TestMethod]
+        public void LevelUpGetLevel_GetsSetsLevel_Int()
+        {
+            TamagotchiPet pet = new TamagotchiPet("Anton");
+            pet.LevelUp();
+            Assert.AreEqual(2, pet.GetLevel());
+        }
+
+        [TestMethod]
         public void SetGetDecayValue_SetsGetsDecayValue_Int()
         {
             TamagotchiPet pet = new TamagotchiPet("Anton");
@@ -26,9 +42,8 @@ namespace Tamagotchi.Tests
         public void SetGetReplenishValue_SetsGetsReplenishValue_Int()
         {
             TamagotchiPet pet = new TamagotchiPet("Anton");
-            pet.SetReplenishValue();
-            int randNum = pet.GetDecayValue();
-            Assert.AreEqual(randNum, pet.GetReplenishValue());
+            int randNum = pet.GetReplenishValue(1, 5);
+            Assert.AreEqual(randNum, pet.GetReplenishValue(1, 5));
         }
 
         [TestMethod] //fix this - how do I test random nums?
@@ -40,22 +55,16 @@ namespace Tamagotchi.Tests
         }
 
         [TestMethod]
-        public void FoodReplenish_AddsFood_Int()
+        public void FoodReplenish_AddsFoodAttentionAndRest_Int()
         {
             TamagotchiPet pet = new TamagotchiPet("Anton");
             pet.FoodReplenish();
             Assert.AreEqual(100, pet.GetFood());
+            Assert.AreEqual(100, pet.GetAttention());
+            Assert.AreEqual(100, pet.GetRest());
         }
 
-        [TestMethod]
-        public void SetGetName_ReturnsName_String()
-        {
-            TamagotchiPet pet = new TamagotchiPet("Anton");
-            pet.SetName("Tamagot");
-            Assert.AreEqual("Tamagotchi", pet.GetName());
-        }
-
-        [TestMethod] //fix this - how do I test random nums?
+        [TestMethod] //how do I test random nums?
         public void AttentionDecay_SubtractsAttention_Int()
         {
             TamagotchiPet pet = new TamagotchiPet("Anton");
@@ -63,15 +72,15 @@ namespace Tamagotchi.Tests
             Assert.AreEqual(pet.GetAttention(), pet.GetAttention());
         }
 
-        [TestMethod]
-        public void AttentionReplenish_AddsAttention_Int()
+        [TestMethod] //how do I test random nums?
+        public void AttentionReplenish_AddsAttentionDecaysRestAndFood_Int()
         {
             TamagotchiPet pet = new TamagotchiPet("Anton");
             pet.AttentionReplenish();
             Assert.AreEqual(100, pet.GetAttention());
         }
 
-        [TestMethod] //fix this - how do I test random nums?
+        [TestMethod] //how do I test random nums?
         public void RestDecay_SubtractsRest_Int()
         {
             TamagotchiPet pet = new TamagotchiPet("Anton");
@@ -79,12 +88,13 @@ namespace Tamagotchi.Tests
             Assert.AreEqual(pet.GetRest(), pet.GetRest());
         }
 
-        [TestMethod]
-        public void RestReplenish_AddsRest_Int()
+        [TestMethod] //how do I test random nums?
+        public void RestReplenish_AddsRestAndAttentionDecaysFood_Int()
         {
             TamagotchiPet pet = new TamagotchiPet("Anton");
             pet.RestReplenish();
             Assert.AreEqual(100, pet.GetRest());
+            Assert.AreEqual(100, pet.GetAttention());
         }
 
         [TestMethod]
