@@ -257,8 +257,8 @@ namespace Tamagotchi.Models
         {
             if (!this.GetIsDead() && this.GetExp() >= this.GetNextLevel())
             {
-              this.ResetExp();
-              this.LevelUp();
+                this.ResetExp();
+                this.LevelUp();
             }
         }
     }
