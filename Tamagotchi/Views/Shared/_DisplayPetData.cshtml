@@ -9,6 +9,12 @@
       <div>
         <img src="img/rev-tamagotchi.gif" class="pet-image" alt="tamagotchi image">
       </div>
+      <div class="pet-level">
+        <h3>Lv: @pet.GetLevel()</h3>
+      </div>
+      <div class="pet-exp">
+        <h3>Exp: @pet.GetExp() / @pet.GetNextLevel()</h3>
+      </div>
       <div class="actions-btns">
         <button class="btn btn-info feed-pet">Feed</button>
         <button class="btn btn-info play-pet">Play</button>

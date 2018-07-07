@@ -32,7 +32,7 @@
   padding: 20px;
   font-size: 30px;
   text-align: center;
-  height: 300px;
+  height: 340px;
   border-radius: 5px 0px 0px 5px;
   border-top: 1px solid #444;
   border-left: 1px solid #444;
@@ -41,7 +41,7 @@
 
 .grid-item-stats {
   margin-top: 20px;
-  height: 300px;
+  height: 340px;
   border-radius: 0px 5px 5px 0px;
   border: 1px solid #444;
   border-right: 5px solid #444;
@@ -59,6 +59,10 @@
 
 .actions-btns {
   margin-top: 20px;
+}
+
+.pet-stat-box {
+  margin-top: 10px;
 }
 
 .pet-stats {

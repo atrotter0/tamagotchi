@@ -19,6 +19,9 @@ namespace Tamagotchi.Controllers
             TamagotchiPet pet = new TamagotchiPet(name);
             return Json(new {
               name = pet.GetName(),
+              level = pet.GetLevel(),
+              exp = pet.GetExp(),
+              nextLevel = pet.GetNextLevel(),
               id = pet.GetId(),
               food = pet.GetFood(),
               attention = pet.GetAttention(),
@@ -39,6 +42,9 @@ namespace Tamagotchi.Controllers
           pet.FoodReplenish();
           return Json(new {
             name = pet.GetName(),
+            level = pet.GetLevel(),
+            exp = pet.GetExp(),
+            nextLevel = pet.GetNextLevel(),
             id = pet.GetId(),
             food = pet.GetFood(),
             attention = pet.GetAttention(),
@@ -52,6 +58,9 @@ namespace Tamagotchi.Controllers
           pet.AttentionReplenish();
           return Json(new {
             name = pet.GetName(),
+            level = pet.GetLevel(),
+            exp = pet.GetExp(),
+            nextLevel = pet.GetNextLevel(),
             id = pet.GetId(),
             food = pet.GetFood(),
             attention = pet.GetAttention(),
@@ -65,6 +74,9 @@ namespace Tamagotchi.Controllers
           pet.RestReplenish();
           return Json(new {
             name = pet.GetName(),
+            level = pet.GetLevel(),
+            exp = pet.GetExp(),
+            nextLevel = pet.GetNextLevel(),
             id = pet.GetId(),
             food = pet.GetFood(),
             attention = pet.GetAttention(),
