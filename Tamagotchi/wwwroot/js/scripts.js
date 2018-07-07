@@ -168,5 +168,6 @@ $(document).ready(function() {
   $(document).on("click", ".bury-pet", function() {
     var id = getId(this);
     buryPet(id);
+    disableBtn(this);
   });
 });
