@@ -18,7 +18,7 @@ A remake of the classic Tamagotchi toy. Add a tamagotchi and try and keep it ali
 * If your pet dies, bury it and try again! See if you can beat your previous record!
 * For an extra challenge, try adding multiple pets!
 
-#### Additional Notes:
+#### Additional Notes
 **Feed:** Adds a medium replenish to the **Hunger** pool, adds a minor replenish to the **Happiness** and **Energy** pools.
 
 **Play:** Adds a major replenish to the **Happiness** pool, adds a minor decay to the **Hunger** and **Energy** pools.
