@@ -1,7 +1,10 @@
-var seconds = 0;
+var seconds = 1;
 
 function startTimer() {
-  if (petsCreated() && timerNotGoing()) runTimer();
+  if (petsCreated() && timerNotGoing()) {
+    displayLifeCycleBar();
+    runTimer();
+  }
 }
 
 function petsCreated() {
@@ -9,14 +12,36 @@ function petsCreated() {
 }
 
 function timerNotGoing() {
-  return seconds <= 0;
+  return seconds <= 1;
+}
+
+function displayLifeCycleBar() {
+  $(".life-cycle-box").show(1000);
+}
+
+function hideLifeCycleBar() {
+  $(".life-cycle-box").hide(1000);
 }
 
 function runTimer() {
+  checkForPets();
   console.log(seconds++);
+  if (seconds > 10) seconds = 1;
   if (seconds % 10 == 0) runPetDecay();
 
-  setTimeout(function() { runTimer(); }, 1000);
+  setTimeout(function() { 
+    runTimer();
+    updateLifeCycle(seconds);
+  }, 1000);
+}
+
+function checkForPets() {
+  (!petsCreated()) ? hideLifeCycleBar() : displayLifeCycleBar();
+}
+
+function updateLifeCycle(seconds) {
+  var percentage = seconds * 10;
+  $("#life-cycle-bar").css("width", percentage + "%");
 }
 
 function createPet(petName) {
