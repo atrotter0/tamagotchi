@@ -25,12 +25,6 @@ A remake of the classic Tamagotchi toy. Add a tamagotchi and try and keep it ali
 
 **Rest:** Adds a medium replenish to the **Happiness** and **Energy** pools, adds a minor decay to the **Hunger** pool.
 
-## Specs
-
-| Behavior | Input | Output |
-|----------|-------|--------|
-| Behavior | input | output |
-
 ## Setup on OSX
 
 * Download and install .Net Core 1.1.4
